@@ -1,4 +1,5 @@
 import { ComponentWizard } from "@/components/component-wizard";
+import { FloatingSocialButton } from "@/components/floating-chat-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Home() {
@@ -11,6 +12,8 @@ export default function Home() {
 
       {/* Main Content */}
       <ComponentWizard />
+
+      {/* <FloatingSocialButton /> */}
     </div>
   );
 }

@@ -173,15 +173,16 @@ ${socialLinksCode}
                                 <p className="text-sm md:text-base text-foreground-secondary mt-1">Create stunning floating social buttons with advanced customization</p>
                             </div>
                         </div>
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-2 md:space-x-4">
                             <ThemeToggle />
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="flex items-center space-x-3 bg-gradient-to-r from-accent to-accent-dark hover:from-accent-dark hover:to-accent text-white px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl glass-button magnetic-hover"
+                                className="flex items-center space-x-2 md:space-x-3 bg-gradient-to-r from-accent to-accent-dark hover:from-accent-dark hover:to-accent text-white px-4 md:px-6 py-2 md:py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl glass-button magnetic-hover"
                             >
-                                <Download className="w-5 h-5" />
-                                <span className="font-medium">Export Code</span>
+                                <Download className="w-4 h-4 md:w-5 md:h-5" />
+                                <span className="font-medium text-sm md:text-base hidden sm:inline">Export Code</span>
+                                <span className="font-medium text-sm md:text-base sm:hidden">Export</span>
                             </motion.button>
                         </div>
                     </div>
@@ -194,25 +195,25 @@ ${socialLinksCode}
                     <div className="xl:col-span-2">
                         <div className="glass-card backdrop-blur-xl bg-surface/90 border border-border/50 rounded-2xl overflow-hidden shadow-2xl">
                             {/* Enhanced Tabs */}
-                            <div className="flex border-b border-border/30 bg-gradient-to-r from-surface-elevated/50 to-surface/50">
+                            <div className="flex border-b border-border/30 bg-gradient-to-r from-surface-elevated/50 to-surface/50 overflow-x-auto">
                                 {tabs.map((tab, index) => (
                                     <motion.button
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
-                                        className={`flex items-center space-x-3 px-8 py-6 transition-all duration-300 relative flex-1 ${activeTab === tab.id
+                                        className={`flex items-center space-x-2 md:space-x-3 px-4 md:px-8 py-4 md:py-6 transition-all duration-300 relative flex-1 min-w-0 whitespace-nowrap ${activeTab === tab.id
                                             ? 'text-accent bg-gradient-to-br from-accent/10 to-accent/5'
                                             : 'text-foreground-secondary hover:text-foreground hover:bg-surface-elevated/50'
                                             }`}
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
                                     >
-                                        <div className={`p-2 rounded-lg transition-all duration-300 ${activeTab === tab.id
+                                        <div className={`p-1.5 md:p-2 rounded-lg transition-all duration-300 ${activeTab === tab.id
                                             ? 'bg-accent/20 text-accent'
                                             : 'bg-surface-elevated text-foreground-muted'
                                             }`}>
-                                            <tab.icon className="w-5 h-5" />
+                                            <tab.icon className="w-4 h-4 md:w-5 md:h-5" />
                                         </div>
-                                        <span className="font-semibold">{tab.label}</span>
+                                        <span className="font-semibold text-sm md:text-base">{tab.label}</span>
                                         {activeTab === tab.id && (
                                             <motion.div
                                                 layoutId="activeTab"
@@ -234,7 +235,7 @@ ${socialLinksCode}
                             </div>
 
                             {/* Enhanced Tab Content */}
-                            <div className="p-8">
+                            <div className="p-4 md:p-6 lg:p-8">
                                 <AnimatePresence mode="wait">
                                     <motion.div
                                         key={activeTab}
@@ -342,12 +343,12 @@ ${socialLinksCode}
                                                 {/* Enhanced Color Theme */}
                                                 <div className="space-y-6">
                                                     <label className="block text-lg font-semibold text-foreground mb-4">Color Theme</label>
-                                                    <div className="grid grid-cols-5 gap-4">
+                                                    <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
                                                         {(['accent', 'success', 'warning', 'error', 'info', 'purple', 'pink', 'orange', 'teal', 'custom'] as const).map((color) => (
                                                             <motion.button
                                                                 key={color}
                                                                 onClick={() => updateConfig('color', color)}
-                                                                className={`relative w-16 h-16 rounded-2xl border-3 transition-all duration-300 ${config.color === color
+                                                                className={`relative w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl border-2 md:border-3 transition-all duration-300 ${config.color === color
                                                                     ? 'border-foreground scale-110 shadow-xl'
                                                                     : 'border-border hover:scale-105 hover:shadow-lg'
                                                                     } ${color === 'accent' ? 'bg-gradient-to-br from-accent to-accent-dark' :
@@ -372,7 +373,7 @@ ${socialLinksCode}
                                                                         transition={{ duration: 0.3 }}
                                                                     />
                                                                 )}
-                                                                <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-foreground-secondary capitalize">
+                                                                <span className="absolute -bottom-5 md:-bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-medium text-foreground-secondary capitalize">
                                                                     {color}
                                                                 </span>
                                                             </motion.button>
@@ -628,86 +629,97 @@ ${socialLinksCode}
                         </div>
                     </div>
 
-                    {/* Enhanced Preview Panel */}
+                    {/* Configuration Summary Panel */}
                     <div className="xl:col-span-1">
-                        <div className="glass-card backdrop-blur-xl bg-surface/90 border border-border/50 rounded-2xl p-8 sticky top-8 shadow-2xl">
+                        <div className="glass-card backdrop-blur-xl bg-surface/90 border border-border/50 rounded-2xl p-4 md:p-6 lg:p-8 sticky top-8 shadow-2xl">
                             <div className="flex items-center space-x-3 mb-6">
-                                <div className="w-8 h-8 bg-gradient-to-br from-accent to-accent-dark rounded-lg flex items-center justify-center">
-                                    <Eye className="w-4 h-4 text-white" />
+                                <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-br from-info to-info-dark rounded-lg flex items-center justify-center">
+                                    <Settings className="w-3 h-3 md:w-4 md:h-4 text-white" />
                                 </div>
-                                <h3 className="text-xl font-bold text-foreground">Live Preview</h3>
+                                <h3 className="text-lg md:text-xl font-bold text-foreground">Configuration</h3>
                             </div>
 
-                            <div className="relative bg-gradient-to-br from-surface-elevated/50 to-muted/50 rounded-2xl h-96 overflow-hidden border border-border/30 shadow-inner">
-                                {/* Animated background pattern */}
-                                <div className="absolute inset-0 opacity-30">
-                                    <div className="absolute top-4 left-4 w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-                                    <div className="absolute top-8 right-8 w-1 h-1 bg-info rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-                                    <div className="absolute bottom-12 left-8 w-1.5 h-1.5 bg-success rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-                                    <div className="absolute bottom-4 right-12 w-1 h-1 bg-warning rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                                </div>
-
-                                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-info/5 opacity-50" />
-                                <div className="absolute inset-6 border-2 border-dashed border-border/50 rounded-xl flex items-center justify-center">
-                                    <div className="text-center">
-                                        <div className="w-12 h-12 bg-gradient-to-br from-accent/20 to-accent/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                                            <Sparkles className="w-6 h-6 text-accent" />
+                            {/* Configuration Display */}
+                            <div className="space-y-4">
+                                <div className="p-3 md:p-4 bg-gradient-to-br from-surface-elevated/30 to-surface/30 rounded-xl border border-border/30">
+                                    <h4 className="font-semibold text-foreground mb-3 text-sm">Button Settings</h4>
+                                    <div className="space-y-2 text-sm">
+                                        <div className="flex justify-between">
+                                            <span className="text-foreground-secondary">Size:</span>
+                                            <span className="text-accent font-medium font-mono">{config.size.toUpperCase()}</span>
                                         </div>
-                                        <p className="text-foreground-secondary text-sm">
-                                            Interactive preview
-                                        </p>
+                                        <div className="flex justify-between">
+                                            <span className="text-foreground-secondary">Position:</span>
+                                            <span className="text-accent font-medium capitalize">{config.position.replace('-', ' ')}</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="text-foreground-secondary">Theme:</span>
+                                            <span className="text-accent font-medium capitalize">{config.color}</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="text-foreground-secondary">Icon:</span>
+                                            <span className="text-accent font-medium capitalize">{config.toggleIcon}</span>
+                                        </div>
                                     </div>
                                 </div>
 
-                            </div>
-
-                            {/* Enhanced Configuration Display */}
-                            <div className="mt-6 p-6 bg-gradient-to-br from-surface-elevated/30 to-surface/30 rounded-xl border border-border/30">
-                                <div className="flex items-center space-x-2 mb-4">
-                                    <Settings className="w-4 h-4 text-accent" />
-                                    <h4 className="font-semibold text-foreground">Configuration</h4>
+                                <div className="p-3 md:p-4 bg-gradient-to-br from-surface-elevated/30 to-surface/30 rounded-xl border border-border/30">
+                                    <h4 className="font-semibold text-foreground mb-3 text-sm">Behavior</h4>
+                                    <div className="space-y-2 text-sm">
+                                        <div className="flex justify-between">
+                                            <span className="text-foreground-secondary">Animation:</span>
+                                            <span className="text-accent font-medium capitalize">{config.animationStyle}</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="text-foreground-secondary">Labels:</span>
+                                            <span className="text-accent font-medium">{config.showLabels ? 'Enabled' : 'Disabled'}</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="text-foreground-secondary">Brand Colors:</span>
+                                            <span className="text-accent font-medium">{config.brandColors ? 'Enabled' : 'Disabled'}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="grid grid-cols-2 gap-3 text-sm">
-                                    <div className="flex justify-between">
-                                        <span className="text-foreground-secondary">Size:</span>
-                                        <span className="text-accent font-medium font-mono">
-                                            {typeof config.size === 'number' ? `${config.size}px` : config.size.toUpperCase()}
-                                        </span>
+
+                                <div className="p-3 md:p-4 bg-gradient-to-br from-surface-elevated/30 to-surface/30 rounded-xl border border-border/30">
+                                    <h4 className="font-semibold text-foreground mb-3 text-sm">Social Links</h4>
+                                    <div className="space-y-2">
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-foreground-secondary">Total Links:</span>
+                                            <span className="text-accent font-medium">{config.socialLinks.length}</span>
+                                        </div>
+                                        <div className="flex flex-wrap gap-1.5 mt-2">
+                                            {config.socialLinks.map((link, index) => (
+                                                <span key={index} className="px-2 py-1 bg-accent/10 text-accent text-xs rounded-lg capitalize">
+                                                    {link.platform}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-foreground-secondary">Position:</span>
-                                        <span className="text-accent font-medium capitalize">{config.position.replace('-', ' ')}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-foreground-secondary">Theme:</span>
-                                        <span className="text-accent font-medium capitalize">{config.color}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-foreground-secondary">Icon:</span>
-                                        <span className="text-accent font-medium capitalize">{config.toggleIcon}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-foreground-secondary">Animation:</span>
-                                        <span className="text-accent font-medium capitalize">{config.animationStyle}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-foreground-secondary">Links:</span>
-                                        <span className="text-accent font-medium">{config.socialLinks.length}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-foreground-secondary">Labels:</span>
-                                        <span className="text-accent font-medium">{config.showLabels ? 'Enabled' : 'Disabled'}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-foreground-secondary">Brand Colors:</span>
-                                        <span className="text-accent font-medium">{config.brandColors ? 'Enabled' : 'Disabled'}</span>
-                                    </div>
+                                </div>
+
+                                {/* Quick Actions */}
+                                <div className="pt-4 border-t border-border/30">
+                                    <motion.button
+                                        onClick={() => navigator.clipboard.writeText(generateCode())}
+                                        className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-success to-success-dark hover:from-success-dark hover:to-success text-white text-sm rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                    >
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                        </svg>
+                                        <span>Copy Component Code</span>
+                                    </motion.button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Live Demo Button */}
+            <FloatingSocialButton {...config} />
         </div>
     )
 }
