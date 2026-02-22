@@ -259,7 +259,6 @@ h6 {
 
 .sidebar-item.active {
   color: var(--accent);
-  border-left-color: var(--accent);
   background: var(--accent-muted);
 }
 

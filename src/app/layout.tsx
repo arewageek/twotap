@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Two Tap | Professional Floating Social Buttons",
+  title: "Flochat | Floating Social Buttons",
   description: "The modern component library for high-conversion floating contact and social buttons.",
 };
 
