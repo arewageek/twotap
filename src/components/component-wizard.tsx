@@ -42,7 +42,8 @@ export function ComponentWizard() {
         animationStyle: 'stack',
         toggleIcon: 'share',
         brandColors: false,
-        previewUrl: ''
+        previewUrl: '',
+        copyType: 'component'
     })
 
     const updateConfig = (key: keyof WizardConfig, value: any) => {
@@ -83,32 +84,42 @@ export function ComponentWizard() {
         ).join(',\n')
 
         const customColorsCode = config.color === 'custom' ? `
-            customColors={{
-                primary: '${config.customColors.primary}',
-                secondary: '${config.customColors.secondary}',
-                hover: '${config.customColors.hover}'
-            }}` : ''
+    customColors={{
+        primary: '${config.customColors.primary}',
+        secondary: '${config.customColors.secondary}',
+        hover: '${config.customColors.hover}'
+    }}` : ''
 
-            return `import { FloatingSocialButton } from './components/floating-social-button'
+        const componentCode = `<Flochat
+    size="${config.size}"
+    position="${config.position}"
+    bottomOffset={${config.bottomOffset}}
+    color="${config.color}"${customColorsCode}
+    socialLinks={[
+    ${socialLinksCode}
+    ]}
+    showLabels={${config.showLabels}}
+    animationStyle="${config.animationStyle}"
+    toggleIcon="${config.toggleIcon}"
+    brandColors={${config.brandColors}}
+/>`
 
-            export default function MyPage() {
-                return (
-                    <FloatingSocialButton
-                    size="${config.size}"
-                    position="${config.position}"
-                    bottomOffset={${config.bottomOffset}}
-                    color="${config.color}"${customColorsCode}
-                    socialLinks={[
-                    ${socialLinksCode}
-                    ]}
-                    showLabels={${config.showLabels}}
-                    animationStyle="${config.animationStyle}"
-                    toggleIcon="${config.toggleIcon}"
-                    brandColors={${config.brandColors}}
-                    />
-                )
-            }`
-                }
+        if (config.copyType === 'component') {
+            return componentCode
+        }
+
+        return `import { Flochat } from '@flochat/react'
+
+export default function ContactWidget() {
+    return (
+        <main className="min-h-screen relative font-sans">
+            {/* Your page content */}
+            
+            ${componentCode}
+        </main>
+    )
+}`
+    }
 
                 const copyCode = () => {
                     navigator.clipboard.writeText(generateCode())
@@ -188,6 +199,7 @@ export function ComponentWizard() {
                                         onCopyCode={copyCode}
                                         copied={copied}
                                         code={generateCode()}
+                                        updateConfig={updateConfig}
                         />
                     )}
                 </AnimatePresence>

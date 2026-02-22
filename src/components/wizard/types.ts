@@ -20,6 +20,7 @@ export interface WizardConfig {
     toggleIcon: 'share' | 'message' | 'zap' | 'sparkles' | 'grid'
     brandColors: boolean
     previewUrl: string
+    copyType: 'component' | 'page'
 }
 
 export const COLOR_PRESETS = [

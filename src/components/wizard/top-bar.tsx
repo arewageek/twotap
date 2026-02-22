@@ -19,8 +19,8 @@ export function TopBar({ urlInput, setUrlInput, onUrlSubmit, onCopyCode, copied 
                     <Share2 size={16} color="white" />
                 </div>
                 <div>
-                    <div className="brand-name">Two Tap</div>
-                    <div className="brand-tag">Premium Builder</div>
+                    <div className="brand-name">Flochat Wizard</div>
+                    <div className="brand-tag">Visual Builder</div>
                 </div>
             </div>
             
